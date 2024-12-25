@@ -3,6 +3,7 @@ import { useState } from "react";
 import Player from "./components/Player";
 import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
+import {WINNING_COMBINATIONS} from "./winning-combination";
 
 /* 헬퍼 함수: 컴포넌트 바깥에 정의
 데이터에 접근할 필요가 없고,
