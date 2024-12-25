@@ -130,15 +130,15 @@ function App() {
           사용하는 위치가 분리된다.
           즉, 재사용해도 서로에게 영향을 주지 않는다. */}
           <Player
-            initialName="Player 1"
+            initialName={PLAYERS.X}
             symbol="X"
-            isActive={PLAYERS.X}
+            isActive={currentPlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
           <Player
-            initialName="Player 2"
+            initialName={PLAYERS.O}
             symbol="O"
-            isActive={PLAYERS.O}
+            isActive={currentPlayer === "O"}
             onChangeName={handlePlayerNameChange}
           />
         </ol>
