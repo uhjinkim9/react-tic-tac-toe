@@ -1,13 +1,4 @@
-import { useState } from "react";
-
-// 상태가 아닌 변수는 컴포넌트 바깥에 저장해도 된다.
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-export default function GameBoard({ onClickSquare, turns }) {
+export default function GameBoard({ onClickSquare, board }) {
   /*
     만약 상태가 객체나 배열이라면,
     해당 상태를 업데이트할 때 이전 상태를 하나 복제해서 새 객체 또는 배열로 저장해 두고
@@ -29,34 +20,16 @@ export default function GameBoard({ onClickSquare, turns }) {
     onClickSquare();
     */
 
-  // turns 배열에 따라 게임보드 업데이트하는 방법
-  let gameBoard = initialGameBoard;
-
-  // turns가 빈 배열이라면 for loop는 작동하지 않음
-  for (const turn of turns) {
-    // turns 배열을 destructuring(구조 분해 할당)하여 square와 player를 추출
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    // gameBoard의 row, col 위치에 player를 할당
-    gameBoard[row][col] = player;
-
-    // gameBoard는 App.jsx의 gameTurns 상태에서 파생된 것
-    // 제어하는 상태의 수는 최소화하되, 각 상태에서 가능한 한 많은 정보와 값을 파생시킨다.
-  }
-
   return (
     <ol id="game-board">
       {/* map의 index는 데이터의 위치와만 연결되어 있기 때문에 웬만하면 사용하지 않는 게 좋다. */}
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
                 <button
-                  onClick={() => 
-                    onClickSquare(rowIndex, colIndex)
-                  }
+                  onClick={() => onClickSquare(rowIndex, colIndex)}
                   disabled={playerSymbol !== null}
                 >
                   {playerSymbol}
